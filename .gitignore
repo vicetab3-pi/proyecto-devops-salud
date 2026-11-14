@@ -1,0 +1,15 @@
+# Archivos de variables de entorno reales y secretos
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs locales
+*.log

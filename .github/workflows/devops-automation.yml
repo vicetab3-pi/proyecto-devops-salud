@@ -1,0 +1,30 @@
+name: Validacion Continua DevOps
+
+on:
+  push:
+    branches: [ main, feature/* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validar-estructura-y-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar archivos obligatorios del proyecto
+        run: |
+          test -f src/index.html
+          test -f src/styles.css
+          test -f Dockerfile
+          test -f docker-compose.yml
+          test -f .env.example
+          test -f .gitignore
+          test -f README.md
+          echo "Todos los archivos obligatorios existen."
+
+      - name: Validar sintaxis de docker-compose y construir imagen Docker
+        run: |
+          docker compose config
+          docker build -t salud-reserva-test:latest .
