@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaludIntegral - Reserva de Horas Médicas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <h1>Clínica SaludIntegral</h1>
+            <span class="status-badge">● Servicio Operativo (Contenedor Nginx)</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="info-card">
+            <h2>Información General de Atención</h2>
+            <p><strong>Horario de atención:</strong> Lunes a Viernes de 08:00 a 20:00 hrs | Sábados de 09:00 a 14:00 hrs.</p>
+            <p><strong>Modalidad:</strong> Presencial y Telemedicina. Recuerde llegar 15 minutos antes de su cita.</p>
+        </section>
+
+        <section class="form-card">
+            <h2>Reserva de Hora Médica</h2>
+            <form id="reservaForm" onsubmit="simularReserva(event)">
+                <div class="form-group">
+                    <label for="rut">RUT o Identificación del Paciente:</label>
+                    <input type="text" id="rut" placeholder="Ej: 12.345.678-9" required>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" placeholder="Ingrese nombre y apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="especialidad">Especialidad Médica:</label>
+                    <select id="especialidad" required>
+                        <option value="">Seleccione especialidad...</option>
+                        <option value="Medicina General">Medicina General</option>
+                        <option value="Cardiología">Cardiología</option>
+                        <option value="Pediatría">Pediatría</option>
+                        <option value="Traumatología">Traumatología</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha de Atención:</label>
+                    <input type="date" id="fecha" required>
+                </div>
+                <button type="submit" class="btn-submit">Confirmar Reserva</button>
+            </form>
+            <div id="mensajeConfirmacion" class="alert hidden"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Plataforma SaludIntegral v1.0 | Entorno Reproducible con Docker & Nginx</p>
+    </footer>
+
+    <script>
+        function simularReserva(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const esp = document.getElementById('especialidad').value;
+            const fecha = document.getElementById('fecha').value;
+            const msg = document.getElementById('mensajeConfirmacion');
+            msg.textContent = `Reserva simulada con éxito para ${nombre} en ${esp} el día ${fecha}.`;
+            msg.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
